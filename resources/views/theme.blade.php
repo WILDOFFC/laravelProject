@@ -36,8 +36,8 @@
             <a href="/" class="logo">SEO</a>
         </div>
         <div class="d-flex align-items-center">
-            <form class="w-100 me-3" role="search"> <input type="search" class="form-control text-danger" style="color: red;"
-                                                           placeholder="Поиск..." aria-label="Search"> </form>
+            <form class="w-100 me-3" role="search" action='{{ route('search') }}'> <input type="search" class="form-control text-danger" style="color: red;"
+                                                           placeholder="Поиск..." name="search" aria-label="Search"> </form>
             <div class="col-lg-4">
                 <div class="btn">
                     <a href="">Избранное</a>

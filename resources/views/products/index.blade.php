@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container d-flex">
+    <div class="container-lg d-flex">
         <h2>Новинки</h2>
         @foreach($productsLast as $product)
             <div class="col-md-3 col-sm-4 col-lg-3">
@@ -51,4 +51,6 @@ tracking-wider">{{ $categories->find($product->category_id)->name }}</span></a>
         @foreach($products as $product)
             @include('parts.product.snippet', ['product'=>$product]);
         @endforeach
+    
+    {{ $products->links() }}
 @endsection

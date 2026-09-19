@@ -14,6 +14,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/auth/register', [RegisterController::class, 'register'])->name('auth.register.store');
 });
 
+Route::get('/search', [ProductController::class, 'search'])->name('search');
+
 Route::get('/admin/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

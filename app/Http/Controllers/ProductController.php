@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use     App\Models\Category;
 use App\Models\Country;
 use App\Models\Product;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(3);
         $categories = Category::all();
         $countries = Country::all();
         $productsLast = Product::orderBy('id', 'desc')->limit(5)->get();
@@ -32,5 +34,13 @@ class ProductController extends Controller
         $categories = Category::all();
         $country = Country::find($countries);
         return view('countries.index', ['products' => $products, 'country'=>$country, 'categories'=>$categories]);
+    }
+
+    public function search(HttpRequest $request): View
+    {
+        $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        $categories = Category::all();
+        $countries = Country::all();
+        return view('search', ['products'=>$products, 'categories'=>$categories, 'countries'=>$countries]);
     }
 }

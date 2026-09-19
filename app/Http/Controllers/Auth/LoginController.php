@@ -13,13 +13,13 @@ class LoginController extends Controller
 {
     public function login(LoginRequest $request): RedirectResponse
     {
-        $creditionals = $request->only("email","password");
+        $data = $request->only("email","password");
 
         // if (!$user || !Hash::check($request->password, $user->password)) {
         //     return redirect()->back()->with('error', 'Неправильная почта или пароль');
         // }
 
-        if (!Auth::attempt($creditionals, $request->boolean('remember'))) {
+        if (!Auth::attempt($data, $request->boolean('remember'))) {
             return redirect()->back()->withInput($request->only('email'))
             ->withErrors('error', 'Неправильная почта или пароль');
         }
@@ -31,7 +31,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        $request->session()->invalidate();  
+        $request->session()->invalidate();
         $request->session()->regenerate();
         return redirect('/auth/login');
     }
