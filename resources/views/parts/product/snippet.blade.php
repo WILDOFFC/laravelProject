@@ -8,7 +8,7 @@
 tracking-wider">{{ $categories->find($product->category_id)->name }}</span></a>
             <a href="countries/{{ $product->country_id }}"><span class="text-muted small text-uppercase
 tracking-wider">{{ $countries->find($product->country_id)->name }}</span></a>
-            <a href="/products/{{ $product->slug }}"><h5 class="card-title fw-semibold my-1">{{ $product->name }}</h5></a>
+            <a href="{{ route('products.show', ['product'=>$product->slug]) }}"><h5 class="card-title fw-semibold my-1">{{ $product->name }}</h5></a>
             <div class="text-warning mb-2 small">
                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i

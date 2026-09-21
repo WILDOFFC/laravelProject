@@ -13,18 +13,13 @@ class LoginController extends Controller
 {
     public function login(LoginRequest $request): RedirectResponse
     {
-        $data = $request->only("email","password");
-
-        // if (!$user || !Hash::check($request->password, $user->password)) {
-        //     return redirect()->back()->with('error', 'Неправильная почта или пароль');
-        // }
-
-        if (!Auth::attempt($data, $request->boolean('remember'))) {
-            return redirect()->back()->withInput($request->only('email'))
-            ->withErrors('error', 'Неправильная почта или пароль');
+        $data = $request->only("email", "password");
+        if (Auth::attempt($data)) {
+            $request->session()->regenerate();
+            return redirect('/');
         }
-        $request->session()->regenerate();
-        return redirect('/products');
+        return redirect()->back()->withInput($request->only('email'))
+            ->withErrors(['error' => 'Неправильная почта или пароль']);
     }
 
     public function logout(Request $request): RedirectResponse

@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-Route::redirect("/","products");
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/auth/register', [RegisterController::class, 'index'])->name('auth.register');
@@ -14,10 +14,16 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/auth/register', [RegisterController::class, 'register'])->name('auth.register.store');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/profile', [UserController::class,'index'])->name('user.profile');
+});
+
+Route::get('catalog', [CatalogController::class,'index'])->name('catalog.index');
+
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 Route::get('/admin/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::get('/countries/{country}', [ProductController::class, 'country'])->name('countries.index');
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
