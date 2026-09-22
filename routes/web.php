@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('catalog', [CatalogController::class,'index'])->name('catalog.index');
 
-Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('/search', [CatalogController::class, 'search'])->name('search');
 
 Route::get('/admin/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
 Route::get('/', [ProductController::class, 'index'])->name('products.index');

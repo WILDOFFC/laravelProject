@@ -35,12 +35,4 @@ class ProductController extends Controller
         $country = Country::find($countries);
         return view('countries.index', ['products' => $products, 'country'=>$country, 'categories'=>$categories]);
     }
-
-    public function search(HttpRequest $request): View
-    {
-        $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->get();
-        $categories = Category::all();
-        $countries = Country::all();
-        return view('search', ['products'=>$products, 'categories'=>$categories, 'countries'=>$countries]);
-    }
 }
