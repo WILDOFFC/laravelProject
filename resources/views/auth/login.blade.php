@@ -15,6 +15,10 @@
                 <label for="exampleInputPassword1">Пароль</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             </div>
+            <div class="form-group">
+                <label for="remember">Запомнить меня</label>
+                <input type="checkbox" name="remember" id="rememberField">
+            </div>
             <button type="submit" class="btn btn-primary">Войти</button>
         </form>
         @if ($errors->any())

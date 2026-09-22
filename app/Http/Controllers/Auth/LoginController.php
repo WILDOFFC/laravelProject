@@ -14,7 +14,8 @@ class LoginController extends Controller
     public function login(LoginRequest $request): RedirectResponse
     {
         $data = $request->only("email", "password");
-        if (Auth::attempt($data)) {
+        $remember = $request->only('remember', false);
+        if (Auth::attempt($data, $remember)) {
             $request->session()->regenerate();
             return redirect('/');
         }
