@@ -22,10 +22,25 @@ class CategoryController extends Controller
         $products = $category->products();
 
         if (request()->filled('sortBy')) {
-            $allowedColumns=['id', 'price', 'name', 'created_at'];
-            $column = in_array(request('sortBy'), $allowedColumns) ?'name':'asc';
-            $direction = request('sortBy') === 'desc' ? 'desc' : 'asc';
-            $products->orderBy('id', $direction);
+            $sort = request('sortBy');
+            switch($sort) {
+                case 'asc':
+                    $products->orderBy('name', 'asc');
+                    break;
+                case 'desc':
+                    $products->orderBy('name', 'desc');
+                    break;
+                case 'priceUp':
+                    $products->orderBy('price', 'asc');
+                    break;
+                case 'priceDown':
+                    $products->orderBy('price', 'desc');
+                    break;
+                case 'newFirst':
+                    $products->orderBy('date_created', 'asc');
+                    break;
+            }
+
         }
 
 
@@ -34,8 +49,10 @@ class CategoryController extends Controller
         if (request()->filled('p_to'))
             $products->where('price', '<=', request('p_to'));
 
-
-        $products = $products->get();
+        if (request()->filled('filterByCountry')) {
+            $products->where('country_id', '=', request('filterByCountry'));
+        }
+        $products = $products->paginate(3)->withQueryString();
         $countries = Country::all();
         return view('categories.show', ['products' => $products, 'categories' => $category, 'countries' => $countries]);
     }

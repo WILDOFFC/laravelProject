@@ -4,16 +4,17 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('auth.passwordChange') }}" method="post" class="">
+        <form action="{{ route('auth.passwordUpdate') }}" method="post" class="">
             @csrf
             <div class="form-group">
-                <label for="oldPassword">Адрес электронной почты</label>
+                <label for="oldPassword">Старый пароль</label>
                 <input type="password" class="form-control" id="oldPasswordField" name="oldPassword">
             </div>
             <div class="form-group">
-                <label for="newPassword">Адрес электронной почты</label>
+                <label for="newPassword">Новый пароль</label>
                 <input type="password" class="form-control" id="newPasswordField" name="newPassword">
             </div>
+            @method('PATCH')
             <button type="submit" class="btn btn-primary">Сменить пароль</button>
         </form>
         @if (!$errors->isEmpty())

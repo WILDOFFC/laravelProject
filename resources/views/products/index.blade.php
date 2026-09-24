@@ -52,5 +52,5 @@ tracking-wider">{{ $categories->find($product->category_id)->name }}</span></a>
             @include('parts.product.snippet', ['product'=>$product]);
         @endforeach
 
-    {{ $products->links() }}
+    {{ $products->links()}}
 @endsection

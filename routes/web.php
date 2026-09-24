@@ -16,6 +16,8 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile', [UserController::class,'index'])->name('user.profile');
+    Route::get('/user/change-password', [UserController::class, 'changePassword'])->name('auth.changePassword');
+    Route::patch('/user/change-password/update', [UserController::class, 'passwordUpdate'])->name('auth.passwordUpdate');
 });
 
 Route::get('catalog', [CatalogController::class,'index'])->name('catalog.index');
