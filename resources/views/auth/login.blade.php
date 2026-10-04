@@ -7,9 +7,9 @@
         <form action="{{ route('auth.login.submit') }}" method="post" class="">
             @csrf
             <div class="form-group">
-                <label for="email">Адрес электронной почты</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">Адреса эл. почты не передаются третьим лицам.</small>
+                <label for="login">Логин</label>
+                <input type="text" class="form-control" id="login" name="login" aria-describedby="emailHelp" value="{{ old('login') }}">
+                <small id="loginHelp" class="form-text text-muted">Ваши данные у нас</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Пароль</label>

@@ -17,8 +17,7 @@ tracking-wider">{{ $countries->find($product->country_id)->name }}</span></a>
             </div>
             <div class="mt-auto d-flex justify-content-between align-items-center">
                 <button class="btn" style="background-color: red;">
-                    <span class="fs-5 fw-bold text-light">{{ $product->price }}₽</span>
-                    <span class="text-muted text-decoration-line-through small ms-1">$999</span>
+                    <span class="fs-5 fw-bold text-light">{{ $product->finalPrice() }}₽</span>
                 </button>
             </div>
         </div>

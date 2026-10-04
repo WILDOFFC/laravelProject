@@ -8,11 +8,15 @@
             @csrf
             <div class="form-group">
                 <label for="oldPassword">Старый пароль</label>
-                <input type="password" class="form-control" id="oldPasswordField" name="oldPassword">
+                <input type="password" class="form-control" id="oldPasswordField" name="current_password">
             </div>
             <div class="form-group">
                 <label for="newPassword">Новый пароль</label>
-                <input type="password" class="form-control" id="newPasswordField" name="newPassword">
+                <input type="password" class="form-control" id="newPasswordField" name="new_password">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">Подтвердите новый пароль</label>
+                <input type="password" name="new_password_confirmation" placeholder="Подтвердите новый пароль" required>
             </div>
             @method('PATCH')
             <button type="submit" class="btn btn-primary">Сменить пароль</button>

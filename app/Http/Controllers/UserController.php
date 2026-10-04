@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -21,13 +21,23 @@ class UserController extends Controller
         return view('user.changePassword');
     }
 
-    public function passwordUpdate(Request $request, User $user): RedirectResponse
+    public function passwordUpdate(Request $request): RedirectResponse
     {
-
-        $user->update([
-            'password'=>$request->newPassword,
+        $request->validate([
+            'current_password' => ['required', 'string'],
+            'new_password'     => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        return redirect()->route('products.index');
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Неправильный текущий пароль']);
+        }
+
+        $user->password = Hash::make($request->new_password);
+
+        $user->save();
+
+        return redirect()->route('products.index')->with('success', 'Пароль успешно изменен!');
     }
 }

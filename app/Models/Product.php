@@ -25,6 +25,7 @@ class Product extends Model
         'category_id',
         'country_id',
         'description',
+        'image_path'
     ];
     protected static function boot(): void
     {

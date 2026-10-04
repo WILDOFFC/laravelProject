@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
         if (request()->filled('sortBy')) {
             $sort = request('sortBy');
-            switch($sort) {
+            switch ($sort) {
                 case 'asc':
                     $products->orderBy('name', 'asc');
                     break;

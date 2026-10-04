@@ -10,6 +10,10 @@
             <input type="text" name="name">
         </div>
         <div class="group-row">
+            <label for="product_preview">Превью товара</label>
+            <input type="file" name="product_preview" id="product_preview_fiel">
+        </div>
+        <div class="group-row">
             <label for="price">Цена</label>
             <input type="number" name="price">
         </div>

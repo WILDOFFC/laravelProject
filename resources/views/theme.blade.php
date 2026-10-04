@@ -46,7 +46,7 @@
                         <a href="">Заказы</a>
                     </div>
                 </div>
-                @if (Auth::check())
+                @auth
                     <div class="flex-shrink-0 dropdown"> <a href="#"
                             class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt="mdo"
@@ -66,9 +66,10 @@
                             </li>
                         </ul>
                     </div>
-                @else
-                <a href="{{ route('auth.login') }}" class="btn btn-primary">Войти</a>
-                @endif
+                @endauth
+                @guest
+                <a href="{{ route('login') }}" class="btn btn-primary">Войти</a>
+                    @endguest
             </div>
         </div>
     </header>

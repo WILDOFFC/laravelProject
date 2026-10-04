@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('price');
+            $table->integer('price_opt');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->text('description');
+            $table->text('image_path');
             $table->timestamps();
         });
     }

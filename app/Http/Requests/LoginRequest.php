@@ -23,7 +23,16 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'login'=>['required'],
+            'password'=>['required']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'login.required' => 'Укажите логин аккаунта',
+            'password.required' => 'Укажите пароль'
         ];
     }
 }

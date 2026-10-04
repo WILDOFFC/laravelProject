@@ -31,6 +31,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id,
             'country_id' => $request->country_id,
+            //'image_path'=>$request->file('product_preview')->store('images', 'public')
         ]);
 
         return redirect()->route('products.index');
@@ -57,5 +58,14 @@ class ProductController extends Controller
     {
         $product->delete();
         return response()->route('products.index');
+    }
+
+    private function imageUpload(Request $request)
+    {
+        if ($request->hasFile('product_preview')){
+            $image = $request->file('product_preview');
+            $scaled=$image->scale(width:600);
+            $resized = $image->resized(600,400);
+        }
     }
 }
