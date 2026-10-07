@@ -38,6 +38,6 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('products.index')->with('success', 'Пароль успешно изменен!');
+        return back()->with('success', 'Пароль успешно изменен!');
     }
 }

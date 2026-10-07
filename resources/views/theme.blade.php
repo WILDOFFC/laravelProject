@@ -32,7 +32,7 @@
             </ul>
         </div> -->
             <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-                <a href="/" class="logo">SEO</a>
+                <a href="/" class="logo">SEO zzzzzz vvvvv</a>
             </div>
             <div class="d-flex align-items-center">
                 <form class="w-100 me-3" role="search" action='{{ route('search') }}'> <input type="search"

@@ -21,10 +21,15 @@
             @method('PATCH')
             <button type="submit" class="btn btn-primary">Сменить пароль</button>
         </form>
+        @if (session('success'))
+            <div class="alert-success alert">
+                {{ session('success') }}
+            </div>
+        @endif
         @if (!$errors->isEmpty())
-        @foreach ($errors->all() as $error)
-        <p class="text-danger p-2">{{ $error }}</p>
-        @endforeach
+            @foreach ($errors->all() as $error)
+                <p class="text-danger p-2">{{ $error }}</p>
+            @endforeach
         @endif
     </div>
 @endsection

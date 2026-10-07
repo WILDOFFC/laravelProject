@@ -17,6 +17,9 @@
             <label for="price">Цена</label>
             <input type="number" name="price">
         </div>
+            <label for="price_opt">Оптовая цена</label>
+            <input type="number" name="price_opt">
+        </div>
         <div class="group-row">
             <label for="description">Описание товара</label>
             <textarea name="description" id="desc" cols="30" rows="10"></textarea>

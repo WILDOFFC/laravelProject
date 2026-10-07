@@ -19,10 +19,42 @@
                     </ul>
                 </div>
                 <div class="mt-auto d-flex justify-content-between align-items-center">
-                    <div class="border rounded-3 p-3 flex-fill me-2">{{ $product->price }}₽</div>
+                    <div class="border rounded-3 p-3 flex-fill me-2">{{ $product->finalPrice() }}₽</div>
                     <button class="btn" style="background-color: red;">
                         <span class="fs-5 fw-bold text-light">Купить</span>
                     </button>
+                </div>
             </div>
         </div>
+        <div class="row">
+        <h2>Отзывы</h2>
+            <div class="leave-review">
+                <form action="{{ route('review.create') }}" method="post">
+                    @csrf
+                    <input type="number" name="product_id" value="{{ $product->id }}" hidden>
+                    <select name="rating" id="ratingField">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
+                    </select>
+                    <textarea name="text" id="" cols="30" rows="10"></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
+            <ul class="reivews-list">
+                @foreach($reviews as $review)
+                <li>
+                    @dd($review->users->name)
+                    <p>{{ $review->users->name }}</p>
+                    <p>{{ $review->text }}</p>
+                </li>
+                @endforeach
+            </ul>
+            <div class="review">
+                <h3 class="review-name"></h3>
+            </div>
+        </div>
+
 @endsection

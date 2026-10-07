@@ -31,12 +31,14 @@ class User extends Authenticatable
             'is_admin'=>'boolean'
         ];
     }
-
-    public function finalPrice() {
-        if(Auth::user()->type == 1) {
-            return $this->price_opt;
-        } else {
-            return $this->price;
-        }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
+
+    public function is_admin() {
+        return $this-> is_admin == 1;
+    }
+
+
 }

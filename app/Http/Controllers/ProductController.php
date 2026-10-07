@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use     App\Models\Category;
 use App\Models\Country;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -25,7 +26,8 @@ class ProductController extends Controller
     {
         $country = Country::find($product->country_id);
         $category = Category::find($product->categories_id);
-        return view('products.show', ['product' => $product, 'country' => $country, 'category' => $category]);
+        $reviews = Review::where('product_id', $product->id)->where('moderate', 1)->get();
+        return view('products.show', ['product' => $product, 'country' => $country, 'category' => $category, 'reviews'=>$reviews]);
     }
 
     public function country($countries): View

@@ -28,6 +28,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'slug' => $request->slug,
             'price' => $request->price,
+            'price_opt' => $request->price_opt,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'country_id' => $request->country_id,
