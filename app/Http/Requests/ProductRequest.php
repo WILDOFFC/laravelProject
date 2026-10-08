@@ -25,6 +25,7 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|string',
             'price' => 'required|numeric',
+            'product_preview' => ['required','image','mimes:jpeg,png,jpg'],
             'description' => 'required|string',
         ];
     }

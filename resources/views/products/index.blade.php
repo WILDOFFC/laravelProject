@@ -8,7 +8,7 @@
     <div class="container-lg d-flex">
         <h2>Новинки</h2>
         @foreach($productsLast as $product)
-            @include('parts.product.snippet', ['product'=>$product]);
+            @include('parts.product.snippet', ['product'=>$product])
         @endforeach
     </div>
     <div class="container my-3">
@@ -26,7 +26,7 @@
     <div class="container d-flex">
         <h2>Каталог</h2>
         @foreach($products as $product)
-            @include('parts.product.snippet', ['product'=>$product]);
+            @include('parts.product.snippet', ['product'=>$product])
         @endforeach
 
     {{ $products->links()}}

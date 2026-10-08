@@ -1,7 +1,7 @@
 <div class="col-md-3 col-sm-4 col-lg-3">
     <div class="card h-100 border-0 shadow-sm product-card">
         <img
-            src="https://xiaomi-sib.ru/media/cache/thumb_540_600/media/product_variant_image/730//c9569798583756bf129488c0fb59967aecb28121.jpg"
+            src="{{ asset('storage/'.$product->image_path) }}"
             class="card-img-top product-img" alt="Фототовара!!!!">
         <div class="card-body d-flex flex-column">
             <a href="/categories/{{ $product->category_id }}"><span class="text-muted small text-uppercase

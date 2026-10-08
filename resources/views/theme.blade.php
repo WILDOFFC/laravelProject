@@ -11,33 +11,30 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="min-vh-100 d-flex flex-column">
     <header class="py-3 mb-3 border-bottom ">
         <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-            <!-- <div class="dropdown"> <a href="#"
-                class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle"
-                data-bs-toggle="dropdown" aria-expanded="false" aria-label="Bootstrap menu">SEO
-                <use xlink:href="#bootstrap"></use>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
-                <li><a class="dropdown-item" href="#">в</a></li>
-                <li><a class="dropdown-item" href="#">Customers</a></li>
-                <li><a class="dropdown-item" href="#">Products</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Reports</a></li>
-                <li><a class="dropdown-item" href="#">Analytics</a></li>
-            </ul>
-        </div> -->
-            <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-                <a href="/" class="logo">SEO zzzzzz vvvvv</a>
+            <div class="dropdown"> <a href="#"
+                    class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false" aria-label="Bootstrap menu">SEO
+                    <use xlink:href="#bootstrap"></use>
+                </a>
+                <ul class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
+                    <li><a class="dropdown-item" href="#">в</a></li>
+                    <li><a class="dropdown-item" href="#">Customers</a></li>
+                    <li><a class="dropdown-item" href="#">Products</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Reports</a></li>
+                    <li><a class="dropdown-item" href="#">Analytics</a></li>
+                </ul>
             </div>
             <div class="d-flex align-items-center">
                 <form class="w-100 me-3" role="search" action='{{ route('search') }}'> <input type="search"
-                        class="form-control text-danger" style="color: red;" placeholder="Поиск..." name="search" value="{{ request('search') }}"
-                        aria-label="Search"> </form>
+                        class="form-control text-danger" style="color: red;" placeholder="Поиск..." name="search"
+                        value="{{ request('search') }}" aria-label="Search"> </form>
                 <div class="col-lg-4">
                     <div class="btn">
                         <a href="">Избранное</a>
@@ -68,8 +65,8 @@
                     </div>
                 @endauth
                 @guest
-                <a href="{{ route('login') }}" class="btn btn-primary">Войти</a>
-                    @endguest
+                    <a href="{{ route('login') }}" class="btn btn-primary">Войти</a>
+                @endguest
             </div>
         </div>
     </header>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    public function products()
+    public function product()
     {
         return $this->hasMany(Product::class);
     }

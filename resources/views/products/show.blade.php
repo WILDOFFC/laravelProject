@@ -7,9 +7,9 @@
     <div class="container-lg border">
         <div class="row">
             <div class="col-6">
-                <img
-                    src="https://xiaomi-sib.ru/media/cache/thumb_540_600/media/product_variant_image/730//c9569798583756bf129488c0fb59967aecb28121.jpg"
-                    alt="Фото {{ $product->name }}">
+                <img src="{{ asset('storage/' . $product->image_path) }}" alt="Фото {{ $product->name }}"
+                    style="width: 600px;">
+
             </div>
             <div class="col-6 ">
                 <h5 class="border padding" style="border-radius: 5px">{{ $product->name }}</h5>
@@ -27,34 +27,36 @@
             </div>
         </div>
         <div class="row">
-        <h2>Отзывы</h2>
-            <div class="leave-review">
-                <form action="{{ route('review.create') }}" method="post">
-                    @csrf
-                    <input type="number" name="product_id" value="{{ $product->id }}" hidden>
-                    <select name="rating" id="ratingField">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="1">5</option>
-                    </select>
-                    <textarea name="text" id="" cols="30" rows="10"></textarea>
-                    <button type="submit">Отправить</button>
-                </form>
-            </div>
-            <ul class="reivews-list">
-                @foreach($reviews as $review)
-                <li>
-                    @dd($review->users->name)
-                    <p>{{ $review->users->name }}</p>
-                    <p>{{ $review->text }}</p>
-                </li>
-                @endforeach
-            </ul>
-            <div class="review">
-                <h3 class="review-name"></h3>
+            <div class="reviews border border-primary rounded-3">
+                <h2 class="text-primary">Отзывы</h2>
+                <div class="leave-review">
+                    <form action="{{ route('review.create') }}" method="post" class="d-flex flex-column col-lg-2">
+                        @csrf
+                        <input type="number" name="product_id" value="{{ $product->id }}" hidden>
+                        <select name="rating" id="ratingField">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <textarea name="text" id="" cols="20" rows="5" class="border border-primary rounded-3"></textarea>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+                <ul class="reivews-list">
+                    @foreach($reviews as $review)
+                        <li class="d-flex flex-column p-3 border">
+                            <p>{{ $review->user->name }}</p>
+                            <p>{{ $review->text }}</p>
+                        </li>
+                    @endforeach
+                </ul>
+                <div class="review">
+                    <h3 class="review-name"></h3>
+                </div>
             </div>
         </div>
+    </div>
 
 @endsection

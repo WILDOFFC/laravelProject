@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,10 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request): RedirectResponse
     {
-
+        $file = $request->file('product_preview');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = Str::uuid() . '.' . $extension;
+        $path = $file->storeAs('images', $fileName, 'public');
         Product::create([
             'name' => $request->name,
             'slug' => $request->slug,
@@ -32,7 +36,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id,
             'country_id' => $request->country_id,
-            //'image_path'=>$request->file('product_preview')->store('images', 'public')
+            'image_path' => $path,
         ]);
 
         return redirect()->route('products.index');
@@ -63,10 +67,10 @@ class ProductController extends Controller
 
     private function imageUpload(Request $request)
     {
-        if ($request->hasFile('product_preview')){
+        if ($request->hasFile('product_preview')) {
             $image = $request->file('product_preview');
-            $scaled=$image->scale(width:600);
-            $resized = $image->resized(600,400);
+            $scaled = $image->scale(width: 600);
+            $resized = $image->resized(600, 400);
         }
     }
 }

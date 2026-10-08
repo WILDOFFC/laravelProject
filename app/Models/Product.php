@@ -19,7 +19,7 @@ class Product extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function reviews()
+    public function review()
     {
         return $this->hasMany(Review::class);
     }
@@ -38,7 +38,6 @@ class Product extends Model
     {
         parent::boot();
 
-        // Auto-generate slug when creating a new product
         static::creating(function ($product) {
             if (empty($product->slug)) {
                 $product->slug = Str::slug($product->name);

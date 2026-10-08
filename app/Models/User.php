@@ -31,7 +31,7 @@ class User extends Authenticatable
             'is_admin'=>'boolean'
         ];
     }
-    public function reviews()
+    public function review()
     {
         return $this->hasMany(Review::class);
     }

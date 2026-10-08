@@ -3,7 +3,7 @@
 @section('page-name', 'Регистрация')
 
 @section('content')
-    <form action="{{ route('auth.register.store') }}" method="post" class="container w-500px">
+    <form action="{{ route('auth.register.store') }}" method="post" class="d-flex flex-column gap-3 col-md-6 col-lg-5 mx-auto border rounded-3 p-3">
         @csrf
         <div class="form-group">
             <label for="inputLogin">Логин</label>
@@ -28,7 +28,7 @@
         </div>
         @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <p class="text-danger p-2">{{ $error }}</p>
+                <p class=" p-3 bg-danger">{{ $error }}</p>
             @endforeach
         @endif
         <button type="submit" class="btn btn-primary">Создать аккаунт?</button>
