@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,9 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        return view("user.profile", ["user" => $user]);
+        $userReviews = $user->review()->where('moderate', 1)->get();
+
+        return view("user.profile", ["user" => $user, "reviews"=>$userReviews]);
     }
 
     public function changePassword(): View

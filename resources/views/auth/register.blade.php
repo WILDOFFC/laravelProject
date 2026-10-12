@@ -26,6 +26,7 @@
             <label for="exampleInputPassword1">Повторите пароль</label>
             <input type="password" name="password_confirmation" class="form-control" id="passwordConfirmInput">
         </div>
+        <input type="text" name="bot_check" class="hidden-obj">
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <p class=" p-3 bg-danger">{{ $error }}</p>

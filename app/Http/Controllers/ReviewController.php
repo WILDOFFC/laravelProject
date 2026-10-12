@@ -16,6 +16,8 @@ class ReviewController extends Controller
         $r ->user_id=Auth::user()->id;
         $r ->product_id=$request->product_id;
         $r->save();
+
+        return back();
     }
 
     public function show() {

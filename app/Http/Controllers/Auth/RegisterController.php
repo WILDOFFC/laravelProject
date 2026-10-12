@@ -19,6 +19,9 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request): RedirectResponse
     {
+        if ($request->bot_check != '') {
+            return redirect('https://m.vk.ru/kikidyulovme?z=photo704323622_457243385%2Falbum704323622');
+        }
         $user = User::create([
             'login'=> $request->login,
             'name' => $request->name,

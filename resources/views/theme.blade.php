@@ -65,7 +65,7 @@
                     </div>
                 @endauth
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-primary">Войти</a>
+                    <a href="{{ route('auth.login') }}" class="btn btn-primary">Войти</a>
                 @endguest
             </div>
         </div>
