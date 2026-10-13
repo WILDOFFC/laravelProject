@@ -3,27 +3,28 @@
 @section('page-name', 'Каталог')
 
 @section('content')
-    <div class="container-lg">
-        <div class="categories">
-            <h2>Категории</h2>
-            <div class="d-flex gap-2" style="">
-                @foreach ($categories as $category)
-                    <a href="{{ route('categories.show', ['category' => $category->id]) }}"
-                        class="text-primary p-3 border border-primary rounded-3 link-underline-opacity-0">
-                        <h3>{{ $category->name }}</h3>
-                    </a>
-                @endforeach
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <form action="#">
+                    <input type="number" name="p_from">
+                    <input type="number" name="p_to">
+                    <input type="submit" value="Применить">
+                    <a href="{{ route('catalog.index', ['categories' => $categories, 'countries'=>$countries]) }}">Сбросить</a>
+                    <select name="sortBy" id="sortBySelect">
+                        <option value="asc">По названию(А-Я)</option>
+                        <option value="desc">По названию(Я-А)</option>
+                    </select>
+                </form>
             </div>
-        </div>
-        <div class="countries">
-            <h2>Категории</h2>
-            <div class="d-flex gap-2">
-                @foreach ($countries as $country)
-                    <a href="{{ route('countries.index', ['country' => $country->id]) }}"
-                        class="text-primary p-3 border border-primary rounded-3 link-underline-opacity-0">
-                        <h3>{{ $country->name }}</h3>
-                    </a>
-                @endforeach
+            <div class="col-9 d-flex">
+                @if (!$products->isEmpty())
+                    @foreach($products as $product)
+                        @include('parts.product.snippet', ['product' => $product, 'countries'=>$product->country])
+                    @endforeach
+                @else
+                    <h2>Пустовато тут...</h2>
+                @endif
             </div>
         </div>
     </div>

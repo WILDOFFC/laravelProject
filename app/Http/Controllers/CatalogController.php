@@ -10,10 +10,12 @@ use Illuminate\View\View;
 
 class CatalogController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        $products = Product::all();
         $categories = Category::all();
         $countries = Country::all();
-        return view('catalog.index', ['categories'=> $categories,'countries'=> $countries]);
+        return view('catalog.index', ['products' => $products, 'categories' => $categories, 'countries' => $countries]);
     }
 
     public function search(HttpRequest $request): View
@@ -21,6 +23,6 @@ class CatalogController extends Controller
         $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->get();
         $categories = Category::all();
         $countries = Country::all();
-        return view('search', ['products'=>$products, 'categories'=>$categories, 'countries'=>$countries]);
+        return view('search', ['products' => $products, 'categories' => $categories, 'countries' => $countries]);
     }
 }

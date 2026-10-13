@@ -7,6 +7,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,12 +16,12 @@ Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/search', [CatalogController::class, 'search'])->name('search');
 
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/countries/{country}', [ProductController::class, 'country'])->name('countries.index');
+Route::get('/countries/{country}', [CountryController::class, 'show'])->name('countries.show');
 
 Route::middleware(['guest'])->prefix('/admin')->group(function () {
     Route::get('/register', [RegisterController::class, 'index'])->name('auth.register');
@@ -43,11 +44,14 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::post('/products', [AdminProductController::class, 'store'])->name('products.store');
     Route::get('/products/create', [AdminProductController::class, 'create'])->name('products.create');
 
-    Route::get('/categories/create', [AdminCategoryController::class,'create'])->name('categories.create');
-    Route::post('/categories/store', [AdminCategoryController::class,'store'])->name('categories.store');
+    Route::get('/categories/edit/{category:slug}', [AdminCategoryController::class, 'edit'])->name('categories.edit');
+    Route::patch('/categories/update/{category:slug}', [AdminCategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category:slug}', [AdminCategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories/create', [AdminCategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories/store', [AdminCategoryController::class, 'store'])->name('categories.store');
 
 
-    Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'show'])->name('reviews.show');
+    Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'index'])->name('reviews.index');
     Route::get('/reviews/update', [\App\Http\Controllers\ReviewController::class, 'status_update'])->name('review.update');
     Route::post('/review/create', [\App\Http\Controllers\ReviewController::class, 'create'])->name('review.create');
 

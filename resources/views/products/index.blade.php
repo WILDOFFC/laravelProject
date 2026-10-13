@@ -14,17 +14,17 @@
     <div class="container my-3">
         <h2>Страны производства</h2>
         @foreach($countries as $country)
-            <div class="p-2 border"><a href="/countries/{{ $country->id }}">{{ $country->name }}</a></div>
+            <div class="p-2 border"><a href="{{ route('countries.show', ['country'=>$country]) }}">{{ $country->name }}</a></div>
         @endforeach
     </div>
     <div class="container my-3">
         <h2>Категории</h2>
         @foreach($categories as $category)
-            <div class="p-2 border"><a href="/categories/{{ $category->id }}">{{ $category->name }}</a></div>
+            <div class="p-2 border"><a href="{{ route('categories.show', ['category'=>$category]) }}">{{ $category->name }}</a></div>
         @endforeach
     </div>
     <div class="container d-flex">
-        <h2>Каталог</h2>
+        <a href="{{ route('catalog.index') }}"><h2>Каталог</h2></a>
         @foreach($products as $product)
             @include('parts.product.snippet', ['product'=>$product])
         @endforeach

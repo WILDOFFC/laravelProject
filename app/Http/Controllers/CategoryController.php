@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function show(Category $category): View
     {
-        $products = $category->products();
+        $products = $category->product();
 
         if (request()->filled('sortBy')) {
             $sort = request('sortBy');

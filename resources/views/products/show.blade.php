@@ -41,6 +41,7 @@
                             <option value="5">5</option>
                         </select>
                         <textarea name="text" id="" cols="20" rows="5" class="border border-primary rounded-3"></textarea>
+                        <input type="text" name="bot_check" class="hidden-obj">
                         <button type="submit" class="btn btn-primary">Отправить</button>
                     </form>
                 </div>
