@@ -7,6 +7,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CountryController as AdminCountryController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -21,6 +22,8 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 
 
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
+
+Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
 Route::get('/countries/{country}', [CountryController::class, 'show'])->name('countries.show');
 
 Route::middleware(['guest'])->prefix('/admin')->group(function () {
@@ -55,6 +58,18 @@ Route::middleware(['admin'])->prefix('/admin')->group(function () {
     Route::get('/reviews/update', [\App\Http\Controllers\ReviewController::class, 'status_update'])->name('review.update');
     Route::post('/review/create', [\App\Http\Controllers\ReviewController::class, 'create'])->name('review.create');
 
+    Route::resource('/countries', AdminCountryController::class)->names([
+        'index'=>'countries.index',
+        'create'=>'countries.create',
+        'edit'=>'countries.edit',
+        'store'=>'countries.store',
+        'destroy' => 'countries.destroy'
+    ]);
+//    Route::post('/countries', [AdminCountryController::class, 'store'])->name('countries.store');
+//    Route::get('/countries/create', [AdminCountryController::class, 'create'])->name('countries.create');
+//    Route::post('/countries', [AdminCountryController::class, 'update'])->name('countries.update');
+//    Route::delete('/countries/{country}', [AdminCountryController::class, 'destroy'])->name('countries.destroy');
+//    Route::get('/countries/edit/{country}', [AdminCountryController::class, 'edit'])->name('countries.edit');
 
     Route::get('/panel', [AdminController::class, 'cabinet'])->name('admin.panel');
 });

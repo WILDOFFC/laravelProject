@@ -14,44 +14,43 @@ class CountryController extends Controller
     public function index()
     {
         $categories = Country::all();
-        return view("categories.index", ['categories' => $categories]);
+        return view("countries.index", ['countries' => $countries]);
     }
 
     public function create()
     {
-        return view('categories.create');
+        return view('countries.create');
     }
 
     public function store(Request $request)
     {
-        $country = new country();
+        $country = new Country();
 
-        $country->name = $request->country_name;
+        $country->name=$request->country_name;
 
         $country->save();
 
-        return back();
+        return back()->with('success', 'Страна была создана');
     }
 
     public function edit(Request $request)
     {
-        $country = $request->country;
-        return view('categories.edit', ['country' => $country]);
+        $country = Country::find($request->country);
+        return view('countries.edit', ['country' => $country]);
     }
 
     public function update(Request $request, country $country)
     {
-        $c = country::where('slug', $country->name);
-        $slug = Str::slug($request->country_name);
-        $c -> update(['name' => $request->country_name, 'slug'=> $slug]);
+        $c = country::where('name', $country->name);
+        $c -> update(['name' => $request->country_name]);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('countries.index');
     }
 
     public function destroy(country $country)
     {
         $country->delete();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('countries.index');
     }
 }

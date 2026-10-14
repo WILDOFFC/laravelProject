@@ -9,6 +9,12 @@ use Illuminate\View\View;
 
 class CountryController extends Controller
 {
+
+    public function index()
+    {
+        $countries = Country::all();
+        return view('countries.index', ['countries'=>$countries]);
+    }
     public function show(Country $country): View
     {
         $products = $country->product();

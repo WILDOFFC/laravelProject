@@ -10,6 +10,7 @@
                         <div class="d-flex justify-content-center gap-2 flex-wrap">
             <a href="{{ route('products.create') }}" class="btn bg-danger text-white">Создать новый товар</a>
             <a href="{{ route('categories.index') }}" class="btn bg-danger text-white">Категории</a>
+            <a href="{{ route('countries.index') }}" class="btn bg-danger text-white">Страны</a>
             <a href="{{ route('reviews.index') }}" class="btn bg-danger text-white">Отзывы</a>
             </div>
         </div>
