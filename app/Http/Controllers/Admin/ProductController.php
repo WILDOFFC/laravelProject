@@ -39,7 +39,7 @@ class ProductController extends Controller
             'image_path' => $path,
         ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Товар успешно создан!');
     }
 
     public function edit(Product $product): View
@@ -56,13 +56,13 @@ class ProductController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Товар обновлен!');
     }
 
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
-        return response()->route('products.index');
+        return response()->route('products.index')->with('success', 'Товар удален!');
     }
 
     private function imageUpload(Request $request)

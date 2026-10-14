@@ -16,7 +16,7 @@ class LoginController extends Controller
         $data = $request->only("login", "password");
         $remember = $request->boolean('remember');
         if (Auth::attempt($data, $remember)) {
-            return redirect('/');
+            return redirect('/')->with('success', 'Вход успешен');
         }
         return redirect()->back()->withInput(['login' => $data['login']])
             ->withErrors(['error' => 'Неправильный логин или пароль']);
@@ -28,7 +28,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerate();
-        return redirect('/auth/login');
+        return redirect('/');
     }
 
     public function index(): View

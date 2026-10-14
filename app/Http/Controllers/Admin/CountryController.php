@@ -13,7 +13,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $categories = Country::all();
+        $countries = Country::all();
         return view("countries.index", ['countries' => $countries]);
     }
 
@@ -30,7 +30,7 @@ class CountryController extends Controller
 
         $country->save();
 
-        return back()->with('success', 'Страна была создана');
+        return back()->with('success', 'Страна создана!');
     }
 
     public function edit(Request $request)
@@ -44,13 +44,13 @@ class CountryController extends Controller
         $c = country::where('name', $country->name);
         $c -> update(['name' => $request->country_name]);
 
-        return redirect()->route('countries.index');
+        return redirect()->route('countries.index')->with('success', 'Страна обновлена!');
     }
 
     public function destroy(country $country)
     {
         $country->delete();
 
-        return redirect()->route('countries.index');
+        return redirect()->route('countries.index')->with('success', 'Страна успешно удалена!');
     }
 }

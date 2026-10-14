@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return back();
+        return back()->with('success', 'Категория создана!');
     }
 
     public function edit(Request $request)
@@ -44,13 +44,13 @@ class CategoryController extends Controller
         $slug = Str::slug($request->category_name);
         $c -> update(['name' => $request->category_name, 'slug'=> $slug]);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Категория обновлена!');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Категория успешно удалена!');
     }
 }

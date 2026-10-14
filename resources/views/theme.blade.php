@@ -20,15 +20,10 @@
                     <use xlink:href="#bootstrap"></use>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
-                    <li><a class="dropdown-item" href="#">в</a></li>
-                    <li><a class="dropdown-item" href="#">Customers</a></li>
-                    <li><a class="dropdown-item" href="#">Products</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Reports</a></li>
-                    <li><a class="dropdown-item" href="#">Analytics</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.index') }}">Главная страница</a></li>
+                    <li><a class="dropdown-item" href="{{ route('catalog.index') }}">Каталог</a></li>
+                    <li><a class="dropdown-item" href="{{ route('categories.index') }}">Категории</a></li>
+                    <li><a class="dropdown-item" href="{{ route('countries.index') }}">Страны</a></li>
                 </ul>
             </div>
             <div class="d-flex align-items-center">
@@ -130,6 +125,7 @@
             </footer>
         </div>
     </footer>
+    <script src="{{ asset('') }}"></script>
 </body>
 
 </html>
